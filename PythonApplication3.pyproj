@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{67e2e084-c772-48af-b145-f96c4e4bf306}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Practise.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>PythonApplication3</Name>
+    <RootNamespace>PythonApplication3</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Age_calculation.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Calculate_grades.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Calendar.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Calendar_allmonths.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Calendar_InRow.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Debugging.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DefensiveProgrammingEg.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EfficiencyExamples.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Encryption.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Examples.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Examples_List_Dict_Comprehension.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Game_coin.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="KnapSackProb.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Practise.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PythonApplication1.py" />
+    <Compile Include="PythonApplication2.py" />
+    <Compile Include="SearchProgram.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sorting.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SquareRootMethods.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TowerOfHanobi.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
