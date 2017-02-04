@@ -1,22 +1,3 @@
-"""                                     Binary Search Tree is an abstract data type      (priority queue)                                          """
-## Arrays has binary search that can be done in O(logn) time but the insertion at the point leads to O(n) so total O(nlogn)
-## Similarly in heaps it will take O(n) time to complete the above process i.e. insertion and checking the checkas it insert at the last then 
-## you use maxheapify in O(logn) and after that search on the other side makes it total O(n)
-
-### Binary tree property.( Priority Queue)
-### Can perform insert, delete, find min/max and find next large or next smaller
-### Binary tree node has one key, one left pointer, one right pointer and one parent pointer.
-### Binary trees generally has asymtotic time of O(h) where h is the length of the longest path from the root to the leaf.
-### Height of any node = {max(height of left child, heightof right child)}+1
-### Size of a subtree is maintained by data augmentation 
-### Binary trees are required for fast insertion, Balanced Binary trees have insertion in a sorted list of "O(logn)" even after having some kind oc check
-
-
-###How to keep your trees balanced: By using AVL, AVL using rotation, it rotates the pointer
-### Property of AVL tree is that the height of left child and right child differ max by +1 or-1.
-
-### Inorder Transsverse has O(n)
-### 1 insertions takes O(logn) and all the n insertions will take O(nlogn)
 
 class BST(object):
     def __init__(self,key):
@@ -24,15 +5,12 @@ class BST(object):
         self.right=None
         self.left=None
         self.parent=None
-        self.min=self
     def insert(self,k):
         new=BST(k)
         if self is None:
             self=new
         else:
             if k<self.val:
-                if new.val < self.min.val:
-                    self.min=new
                 if self.left is None:
                     new.parent=self
                     self.left=new
@@ -91,11 +69,11 @@ class BST(object):
         if self.right is not None:
             return self.right.find_min()
         else:
-            if self.parent is not None and self.parent.right is self:
-                self=self.parent
-                return self.parent
-            else:
-                return self.parent
+            current=self
+            while current.parent is not None and current.parent.right is current:
+                current=current.parent
+            return current.parent
+           
     def delete(self,k):
         self=self.find(k)
         if self.left is None or self.right is None:
