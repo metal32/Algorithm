@@ -6,7 +6,7 @@ class Vertex:
         self.parent=None
         self.color="white"
         self.discovery=0
-        self.finish=0
+        self.finish=None
 
     def addNeighbor(self,nbr,weight=0):
         self.connectedTo[nbr]=weight
