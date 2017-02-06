@@ -4,13 +4,40 @@ class Vertex:
         self.connectedTo={}
         self.level={self:0}
         self.parent=None
+        self.color="white"
+        self.discovery=0
+        self.finish=0
 
     def addNeighbor(self,nbr,weight=0):
         self.connectedTo[nbr]=weight
 
     def __str__(self):
         return str(self.id)+' connected to '+str([x.id for x in self.connectedTo])
+    
+    def setPred(self,s):
+        self.parent=s
 
+    def getPred(self):
+        return self.parent
+
+    def setColor(self,col):
+        self.color=col
+
+    def getColor(self):
+        return self.color
+
+    def setDiscovery(self,time):
+        self.discovery=time
+
+    def getDiscovery(self):
+        return self.discovery
+
+    def setFinish(self,time):
+        self.finish=time
+
+    def getFinish(self):
+        return self.finish
+    
     def getConnection(self):
         return self.connectedTo.keys()
 
