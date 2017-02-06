@@ -1,4 +1,4 @@
-class Vertex:
+class Vertex(object):
     def __init__(self,key):
         self.id=key
         self.connectedTo={}
@@ -47,10 +47,14 @@ class Vertex:
     def getWeight(self,nbr):
         return self.connectedTo[nbr]
 
-class Graph:
+class Graph(object):
     def __init__(self):
         self.vertList={}
         self.numVertices=0
+        self.edges={}
+
+    def setEdge(self,f,t,u):
+        self.edges[(f,t)]=u
 
     def addVertex(self,key):
         self.numVertices+=1
