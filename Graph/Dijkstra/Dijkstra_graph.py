@@ -167,6 +167,7 @@ class PriorityQueue(Graph):
         i=self.heapList.index((a,b))
         a=dist
         self.heapList[i]=(a,b)
+        self.key[Vertex]=(a,b)
         self.percUp(i)
 
     def isEmpty(self):
