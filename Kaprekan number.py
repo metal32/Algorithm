@@ -18,7 +18,9 @@ def kaprekarNumber(x):
     else:
         return False
 
+# For finding all kaprekan numbers between p and q both inclusive
 p=input()
 q=input()
-alist=[i for i in range(p,q) if kaprekarNumber(i)]
+
+alist=[i for i in range(p,q+1) if kaprekarNumber(i)]
 print ' '.join(map(str,alist))
