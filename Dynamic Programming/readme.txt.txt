@@ -15,3 +15,7 @@ c) recurrence=> F(k)=F(k-1)+F(k-2) .....time/subprob= O(1)
 d) topological order, so total time O(n)
 e) F(n) is the original problem, extra time: O(1)
  
+
+The order of complexitiy for finding the shorted path for weighted edges in an acyclic graphs is O(V+E)
+while for cyclic graph it is O(V*E)
+
