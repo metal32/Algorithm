@@ -208,6 +208,18 @@ class BinarySearchTree(TreeNode):
        else:
            return False
 
+    def updateBalanceDel(self,node):
+        if node.balanceFactor<-1 or node.balanceFactor>1:
+            self.rebalance(node)
+            return
+        if node.parent:
+            if node.isLeftChild():
+                node.parent.balanceFactor-=1
+            elif node.isRightChild():
+                node.parent.balanceFactor+=1
+            if node.parent.balanceFactor==0:
+                self.updateBalance(node.parent)
+
     def delete(self,key):
       if self.size > 1:
          nodeToRemove = self._get(key,self.root)
@@ -226,58 +238,83 @@ class BinarySearchTree(TreeNode):
        self.delete(key)
 
 
-    def remove(self,currentNode):
-         if currentNode.isLeaf(): #leaf
-           if currentNode == currentNode.parent.leftChild:
-               currentNode.parent.leftChild = None
-           else:
-               currentNode.parent.rightChild = None
-         elif currentNode.hasBothChildren(): #interior
-           succ = currentNode.findSuccessor()
-           succ.spliceOut()
-           currentNode.key = succ.key
-           currentNode.payload = succ.payload
+    def remove(self,node):
+        if node.isLeaf():
+            if node.isLeftChild():
+                node.parent.leftChild=None
+                node.parent.balanceFactor-=1
+                if node.parent.balanceFactor==0:
+                    self.updateBalanceDel(node.parent)
+            else:
+                node.parent.rightChild=None
+                node.parent.balanceFactor+=1
+                if node.parent.balanceFactor==0:
+                    self.updateBalanceDel(node.parent)
 
-         else: # this node has one child
-           if currentNode.hasLeftChild():
-             if currentNode.isLeftChild():
-                 currentNode.leftChild.parent = currentNode.parent
-                 currentNode.parent.leftChild = currentNode.leftChild
-             elif currentNode.isRightChild():
-                 currentNode.leftChild.parent = currentNode.parent
-                 currentNode.parent.rightChild = currentNode.leftChild
-             else:
-                 currentNode.replaceNodeData(currentNode.leftChild.key,
-                                    currentNode.leftChild.payload,
-                                    currentNode.leftChild.leftChild,
-                                    currentNode.leftChild.rightChild)
-           else:
-             if currentNode.isLeftChild():
-                 currentNode.rightChild.parent = currentNode.parent
-                 currentNode.parent.leftChild = currentNode.rightChild
-             elif currentNode.isRightChild():
-                 currentNode.rightChild.parent = currentNode.parent
-                 currentNode.parent.rightChild = currentNode.rightChild
-             else:
-                 currentNode.replaceNodeData(currentNode.rightChild.key,
-                                    currentNode.rightChild.payload,
-                                    currentNode.rightChild.leftChild,
-                                    currentNode.rightChild.rightChild)
+        elif node.hasBothChildren():
+            succ=node.findSuccessor()
+            succ.spliceOut()
+            node.key=succ.key
+            node.payLoad=succ.payLoad
+            if succ.isLeftChild():
+                succ.parent.balanceFactor-=1
+                if succ.parent.balanceFactor==0:
+                    self.updateBalanceDel(succ.parent)
+            else:
+                succ.parent.balanceFactor+=1
+                if succ.parent.balanceFactor==0:
+                    self.updateBalanceDel(succ.parent)
+        else:
+            if node.hasLeftChild():
+                if node.isLeftChild():
+                    node.parent.leftChild=node.leftChild
+                    node.leftChild.parent=node.parent
+                    node.parent.balanceFactor-=1
+                    if node.parent.balanceFactor==0:
+                        self.updateBalanceDel(node.parent)
+                elif node.isRightChild():
+                    node.parent.rightChild=node.leftChild
+                    node.leftChild.parent=node.parent
+                    node.parent.balanceFactor+=1
+                    if node.parent.balanceFactor==0:
+                        self.updateBalanceDel(node.parent)
+                else:
+                    node.replaceNodeData(node.leftChild.key,node.leftChild.payLoad,node.leftChild.leftChild,node.leftChild.rightChild)
+            else:
+                if node.isLeftChild():
+                    node.rightChild.parent = node.parent
+                    node.parent.leftChild = node.rightChild
+                    node.parent.balanceFactor-=1
+                    if node.parent.balanceFactor==0:
+                        self.updateBalanceDel(node.parent)
+                elif node.isRightChild():
+                    node.rightChild.parent = node.parent
+                    node.parent.rightChild = node.rightChild
+                    node.parent.balanceFactor+=1
+                    if node.parent.balanceFactor==0:
+                        self.updateBalanceDel(node.parent)
+                else:
+                    node.replaceNodeData(node.rightChild.key,
+                                    node.rightChild.payload,
+                                    node.rightChild.leftChild,
+                                    node.rightChild.rightChild)
 
 
 
 
-mytree = BinarySearchTree()
-mytree[3]="Ayush"
-mytree[4]="Ashish"
-mytree[6]="Chaman"
-mytree[2]="Rishab"
-mytree[8]="Viraj"
-mytree[7]="Kunal"
-mytree[1]="Dhruv"
-mytree[10]="Amandeep"
-mytree[9]="Rahul"
-print(mytree[6])
-print(mytree[2])
+s = BinarySearchTree()
+s[1]='Ayush'
+s[9]='Ashish'
+s[3]='Rishabh'
+s[6]="Chaman"
+s[2]="Rishab"
 
-print mytree.root.payload
+s[7]="Kunal"
+s[11]="Dhruv"
+s[10]="Amandeep"
+s[9]="Rahul"
+
+
+print s.root.key
+print s.root.balanceFactor
+print s.root.parent
