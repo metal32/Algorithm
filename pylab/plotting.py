@@ -1,28 +1,32 @@
-from pylab import *
-import random
+num_of_lines = 3
 
-#plot([1,2,3,4])
-#plot([5,6,7,8])
-#plot([1,2,3,4],[1,4,9,16])
-#figure()
-#plot([1,2,3,4],[1,4,9,16],'ro')
-#axis([0,6,0,20])
-#title('Earnings')
-#xlabel('Days')
-#ylabel('Dollars')
-#figure()
-xAxis=array([1,2,3,4])
-#print xAxis
-test=arange(1,5)
-#print test
-#print test==xAxis
-yAxis=xAxis**3
-#print yAxis
-#plot(xAxis,yAxis,'ro')
-vals=[]
-dieVals=[1,2,3,4,5,6]
-for i in range(10000):
-    vals.append(random.choice(dieVals)+random.choice(dieVals))
-hist(vals,bins=8)
+# Defines a coluor for each line
+colours = ['c', 'crimson', 'chartreuse'] 
 
-show()
+# Defines a marker for each line
+markers = ['o', 'v', '*']
+
+# Creates x array with numbers ranged from 0 to 10(exclusive)
+import numpy as np
+import matplotlib.pyplot as plt
+# Creates an empty list for y co-ordinates in each line
+x = np.arange(10)
+y = []
+
+# For each line
+for i in range(num_of_lines):
+    # Adds to y according to y=ix+1 function
+    y.append(x*i+1)
+
+# This is where plotting happens!!!
+# For each line
+for i in range(num_of_lines):
+    # Scatter plot with point_size^2 = 75, and with respective colors
+    plt.scatter(x, y[i], marker=markers[i], s=75, c=colours[i])
+    # Connects points with lines, and with respective colours
+    plt.plot(x, y[i], c=colours[i])
+
+# Show grid in the plot
+plt.grid()
+# Finally, display the plot
+plt.show()
